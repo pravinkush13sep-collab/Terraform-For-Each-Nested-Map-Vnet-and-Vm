@@ -8,40 +8,31 @@ trigger:
 pool: pravin-agent
 
 stages:
-  - stage: Terraform
-    displayName: "Terraform Infra Pipeline"
-
+  - stage:
+    displayName: Terraform Infra Pipeline
     jobs:
-      - job: TerraformJob
-        displayName: "Terraform Init Plan Apply"
-
+      - job:
+        displayName: Terraform init plan
         steps:
           - task: TerraformInstaller@1
-            displayName: "Install Terraform"
             inputs:
-              terraformVersion: "latest"
-
+              terraformVersion: 'latest'
           - task: TerraformTask@5
-            displayName: "Terraform Init"
             inputs:
-              provider: "azurerm"
-              command: "init"
-              backendServiceArm: "pravin-connection"
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'pravin-connection'
               backendAzureRmResourceGroupName: "RG-DEV"
-              backendAzureRmStorageAccountName: "vikrantstorage9987"
-              backendAzureRmContainerName: "pravinnekramvikram"
-              backendAzureRmKey: "terraform.tfstate"
-
+              backendAzureRmStorageAccountName: 'vikrantstorage9987'
+              backendAzureRmContainerName: 'pravinnekramvikram'
+              backendAzureRmKey: 'terraform.tfstate'
           - task: TerraformTask@5
-            displayName: "Terraform Plan"
             inputs:
-              provider: "azurerm"
-              command: "plan"
-              environmentServiceNameAzureRM: "pravin-connection"
-
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'pravin-connection'
           - task: TerraformTask@5
-            displayName: "Terraform Apply"
             inputs:
-              provider: "azurerm"
-              command: "apply"
-              environmentServiceNameAzureRM: "pravin-connection"
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: 'pravin-connection'
