@@ -45,10 +45,3 @@ stages:
               provider: "azurerm"
               command: "apply"
               environmentServiceNameAzureRM: "pravin-connection"
-
-          - task: TerraformTask@5
-            displayName: "Terraform Output"
-            inputs:
-              provider: "azurerm"
-              command: "output"
-              environmentServiceNameAzureRM: "pravin-connection"
